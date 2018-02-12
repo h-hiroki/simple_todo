@@ -1,0 +1,64 @@
+* {
+  font-family: "Hiragino Maru Gothic Pro";
+  font-size: 14px;
+}
+
+.main {
+  margin: 0 auto;
+}
+
+.flash {
+  text-align: center;
+  background-color: #FF9F1C;
+  color: #FDFFFC;
+  height: 36px;
+  font-size: 28px;
+  line-height: 36px;
+}
+
+.errorset {
+  color: #E71D36;
+  text-align: center;
+}
+
+.fieldset {
+  margin-bottom: 10px;
+}
+
+
+.todo-list {
+  width: 100%;
+}
+
+.td {
+  &-do_date {
+    width: 13%;
+  }
+  &-title {
+    width: 40%;
+  }
+  &-status {
+    width: 10%;
+  }
+  &-btn {
+    width: 5%;
+  }
+}
+
+.done {
+  text-decoration: none;
+  color: #9BC53D;
+}
+
+.remove {
+  text-decoration: none;
+  color: gray;
+}
+
+.done-stauts {
+  color: #9BC53D;
+}
+
+.expired {
+  color: #E71D36;
+}

@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    attributes:
+      todo:
+        do_date: 期限日
+        title: 内容
+

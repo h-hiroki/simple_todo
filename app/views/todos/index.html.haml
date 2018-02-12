@@ -1,0 +1,51 @@
+.pure-g
+  .pure-u-5-8.main
+    %h1 TODO管理
+    - if @todo.errors.any?
+      .errorset
+        - @todo.errors.full_messages.each do |message|
+          .error-msg
+            = message
+    = form_for @todo, html: {class: "pure-form "} do |f|
+      .fieldset
+        = f.date_field :do_date, class: "pure-u-1-4"
+        = f.text_field :title, placeholder: "やることを入力しよう！", maxlength: 30,class: "pure-u-3-5"
+        = f.submit "追加", class: "pure-button pure-u-1-7", method: "POST"
+
+    %table.pure-table.todo-list
+      %thead
+        %tr
+          %td.td-do_date 期限日
+          %td.td-title 内容
+          %td.td-status ステータス
+          %td.td-btn{colspan: "2"}
+      - @todos.each do |todo|
+        - if todo.do_date.strftime('%Y%m%d') < Date.today.strftime('%Y%m%d')
+          %tr
+            %td.td-do_date.expired
+              = todo.do_date.strftime('%Y/%m/%d')
+            %td.td-title.expired
+              = todo.title
+            %td.td-status.expired
+              %p 期限切れ
+            %td.td-btn
+              - if todo.status == 0
+                = link_to "", todo_path(id: todo.id), method: "PATCH" , class: "fa fa-check done"
+            %td.td-btn
+              = link_to "", todo_path(id: todo.id), method: "DELETE", class: "fa fa-remove remove"
+        - else
+          %tr
+            %td.td-do_date
+              = todo.do_date.strftime('%Y/%m/%d')
+            %td.td-title
+              = todo.title
+            %td.td-status
+              - if todo.status == 1
+                %p.done-stauts 完了
+              - else
+                未処理
+            %td.td-btn
+              - if todo.status == 0
+                = link_to "", todo_path(id: todo.id), method: "PATCH" , class: "fa fa-check done"
+            %td.td-btn
+              = link_to "", todo_path(id: todo.id), method: "DELETE", class: "fa fa-remove remove"
